@@ -13,7 +13,7 @@ function FileUpload() {
     formData.append("file", file);
 
     // Backend endpoint (update if needed)
-    const res = await fetch("https://your-backend-url.onrender.com/upload", {
+    const res = await fetch("https://syla-bankend.onrender.com", {
       method: "POST",
       body: formData,
     });
