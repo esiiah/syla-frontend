@@ -18,9 +18,13 @@ function App() {
       <p className="mt-2 text-gray-600">
         Upload your data and generate instant visualizations.
       </p>
+  
 
       <FileUpload />
       <ChartView />
+    </div>
+    <div className="text-4xl font-bold text-blue-600">
+      Tailwind is working!
     </div>
   );
 }
