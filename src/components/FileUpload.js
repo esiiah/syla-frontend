@@ -13,7 +13,7 @@ function FileUpload() {
     formData.append("file", file);
 
     try {
-      const response = await fetch("https://syla-bankend.onrender.com", {
+      const response = await fetch("https://syla-backend.onrender.com/upload", {
         method: "POST",
         body: formData,
       });
