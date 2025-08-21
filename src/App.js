@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <header className="flex items-center gap-2">
         <img
-          src={`${process.env.PUBLIC_URL}/icon.png`}
+          src={`${process.env.PUBLIC_URL}/favicon.png`}
           alt="Syla logo"
           className="w-8 h-8"
         />
