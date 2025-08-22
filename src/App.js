@@ -5,27 +5,29 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="flex items-center gap-2">
-        <img
-          src={`${process.env.PUBLIC_URL}/favicon.png`}
-          alt="Syla logo"
-          className="w-8 h-8"
-        />
-        <h1 className="text-2xl font-bold">Syla Data Analytics</h1>
-      </header>
+    <>
+      <div className="App">
+        <header className="flex items-center gap-2">
+          <img
+            src={`${process.env.PUBLIC_URL}/favicon.png`}
+            alt="Syla logo"
+            className="w-8 h-8"
+          />
+          <h1 className="text-2xl font-bold">Syla Data Analytics</h1>
+        </header>
 
-      <p className="mt-2 text-gray-600">
-        Upload your data and generate instant visualizations.
-      </p>
-  
+        <p className="mt-2 text-gray-600">
+          Upload your data and generate instant visualizations.
+        </p>
 
-      <FileUpload />
-      <ChartView />
-    </div>
-    <div className="text-4xl font-bold text-blue-600">
-      Tailwind is working!
-    </div>
+        <FileUpload />
+        <ChartView />
+      </div>
+
+      <div className="text-4xl font-bold text-blue-600">
+        Tailwind is working!
+      </div>
+    </>
   );
 }
 
