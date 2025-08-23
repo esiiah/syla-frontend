@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import FileUpload from "./components/FileUpload";
 import ChartView from "./components/ChartView";
 import "./App.css";
 
 function App() {
+  const [data, setData] = useState([]);          // cleaned rows
+  const [columns, setColumns] = useState([]);    // column names
+  const [types, setTypes] = useState({});        // {"col": "numeric" | "categorical" | "datetime"}
+  const [summary, setSummary] = useState({});    // numeric stats
+
   return (
     <>
       <div className="App">
@@ -20,13 +25,24 @@ function App() {
           Upload your data and generate instant visualizations.
         </p>
 
-        <FileUpload />
-        <ChartView />
+        <FileUpload
+          onData={setData}
+          onColumns={setColumns}
+          onTypes={setTypes}
+          onSummary={setSummary}
+        />
+
+        <ChartView data={data} columns={columns} types={types} />
+
+        {Object.keys(summary).length > 0 && (
+          <div className="max-w-3xl mx-auto mt-6 p-4 rounded-lg bg-gray-50">
+            <h2 className="text-lg font-semibold mb-2">Summary</h2>
+            <pre className="text-sm overflow-auto">{JSON.stringify(summary, null, 2)}</pre>
+          </div>
+        )}
       </div>
 
-      <div className="text-4xl font-bold text-blue-600">
-        Tailwind is working!
-      </div>
+      <div className="text-4xl font-bold text-blue-600">Tailwind is working!</div>
     </>
   );
 }
