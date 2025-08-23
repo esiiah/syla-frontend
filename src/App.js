@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FileUpload from "./components/FileUpload";
 import ChartView from "./components/ChartView";
 import "./App.css";
@@ -8,6 +8,17 @@ function App() {
   const [columns, setColumns] = useState([]);    // column names
   const [types, setTypes] = useState({});        // {"col": "numeric" | "categorical" | "datetime"}
   const [summary, setSummary] = useState({});    // numeric stats
+
+  // Optional: detect PWA install prompt
+  useEffect(() => {
+    let deferredPrompt;
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      console.log("PWA can be installed!");
+      // You can later trigger deferredPrompt.prompt() when user clicks a button
+    });
+  }, []);
 
   return (
     <>
