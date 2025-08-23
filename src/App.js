@@ -29,7 +29,7 @@ function App() {
             alt="Syla logo"
             className="w-8 h-8"
           />
-          <h1 className="text-2xl font-bold">Syla Data Analytics</h1>
+          <h1 className="text-2xl font-bold text-center">Syla Data Analytics</h1>
         </header>
 
         <p className="mt-2 text-gray-600">
@@ -53,7 +53,6 @@ function App() {
         )}
       </div>
 
-      <div className="text-4xl font-bold text-blue-600">Tailwind is working!</div>
     </>
   );
 }
