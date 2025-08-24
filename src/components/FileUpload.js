@@ -9,55 +9,39 @@ function FileUpload({ onData, onColumns, onTypes, onSummary }) {
     setFile(e.target.files[0]);
   };
 
-  const handleUpload = () => {
+  const handleUpload = async () => {
     if (!file) return alert("Please select a file first.");
 
     const formData = new FormData();
     formData.append("file", file);
 
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://syla-backend.onrender.com/upload", true);
-
-    xhr.upload.onprogress = (event) => {
-      if (event.lengthComputable) {
-        const percent = Math.round((event.loaded / event.total) * 100);
-        setProgress(percent);
-      }
-    };
-
-    xhr.onloadstart = () => {
+    try {
       setUploading(true);
       setProgress(0);
-    };
 
-    xhr.onload = () => {
+      const response = await fetch("https://syla-backend.onrender.com/upload", {
+        method: "POST",
+        body: formData,
+      });
+
       setUploading(false);
-      if (xhr.status === 200) {
-        try {
-          const result = JSON.parse(xhr.responseText);
-          if (result.error) {
-            alert(result.error);
-            return;
-          }
-          onData(result.data || []);
-          onColumns(result.columns || []);
-          onTypes(result.types || {});
-          onSummary(result.summary || {});
-          alert(`Upload successful: ${result.filename} (${result.rows} rows)`);
-        } catch (e) {
-          alert("Upload succeeded but response was not JSON.");
-        }
-      } else {
-        alert("Upload failed");
-      }
-    };
 
-    xhr.onerror = () => {
+      const result = await response.json();
+
+      if (result.error) {
+        alert(result.error);
+        return;
+      }
+
+      onData(result.data || []);
+      onColumns(result.columns || []);
+      onTypes(result.types || {});
+      onSummary(result.summary || {});
+      alert(`Upload successful: ${result.filename} (${result.rows} rows)`);
+    } catch (err) {
       setUploading(false);
       alert("Upload failed due to network error");
-    };
-
-    xhr.send(formData);
+    }
   };
 
   return (
