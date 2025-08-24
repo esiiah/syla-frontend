@@ -1,8 +1,5 @@
 /* eslint-disable no-restricted-globals */
 
-// Simple service worker for CRA PWA
-// Caches static assets, bypasses /upload requests
-
 const CACHE_NAME = "syla-pwa-cache-v1";
 const urlsToCache = [
   "/",
@@ -37,13 +34,18 @@ self.addEventListener("activate", (event) => {
 
 // Fetch event: serve cached assets, bypass /upload requests
 self.addEventListener("fetch", (event) => {
-  if (event.request.url.includes("/upload")) {
-    return; // do not cache upload requests
+  const url = new URL(event.request.url);
+
+  // Bypass cache for backend API calls (all /upload requests)
+  if (url.pathname.includes("/upload") || url.origin === "https://syla-bankend.onrender.com") {
+    event.respondWith(fetch(event.request));
+    return;
   }
 
+  // Default caching for other requests
   event.respondWith(
-    caches.match(event.request).then((response) => {
-      return response || fetch(event.request);
+    caches.match(event.request).then((cachedResponse) => {
+      return cachedResponse || fetch(event.request);
     })
   );
 });
