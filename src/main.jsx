@@ -1,16 +1,15 @@
-import React from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App'
-import './index.css'
-import './App.css'
-import { register } from './serviceWorkerRegistration'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./index.css";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
-createRoot(document.getElementById('root')).render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
-)
+);
 
-if ('serviceWorker' in navigator && import.meta.env.PROD) {
-  register()
-}
+// Register PWA service worker
+serviceWorkerRegistration.register();
