@@ -1,10 +1,9 @@
-// Registers the PWA service worker for Render production
-// Place in src/ and import in index.js
+// src/serviceWorkerRegistration.js
 
 export function register() {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker
-      .register(`${process.env.PUBLIC_URL}/service-worker.js`)
+      .register(`/service-worker.js`)
       .then((registration) => {
         console.log("ServiceWorker registered:", registration);
       })
