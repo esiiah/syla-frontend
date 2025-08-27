@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import FileUpload from "./components/FileUpload";
-import ChartView from "./components/ChartView";
+import FileUpload from "./components/FileUpload.jsx";
+import ChartView from "./components/ChartView.jsx";
 import "./App.css";
 
 function App() {
