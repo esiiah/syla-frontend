@@ -4,8 +4,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   esbuild: {
-    loader: {
-      '.js': 'jsx', // <-- treat all .js files as JSX
-    },
+    // This ensures all .js files are treated as JSX during build
+    loader: 'jsx',
+    include: /src\/.*\.[jt]sx?$/ // .js, .jsx, .ts, .tsx
   },
 })
