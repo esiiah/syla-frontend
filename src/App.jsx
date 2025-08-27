@@ -36,6 +36,11 @@ function App() {
           Upload your data and generate instant visualizations.
         </p>
 
+        {/* ✅ Tailwind test */}
+        <div className="mt-4 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800">
+          Tailwind v4 is working 🎉
+        </div>
+
         <FileUpload
           onData={setData}
           onColumns={setColumns}
@@ -52,7 +57,6 @@ function App() {
           </div>
         )}
       </div>
-
     </>
   );
 }
